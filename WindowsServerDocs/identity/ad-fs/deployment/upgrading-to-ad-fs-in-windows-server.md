@@ -81,7 +81,7 @@ Set-AdfsSyncProperties -Role SecondaryComputer -PrimaryComputerName {FQDN}
 
 ![Screenshot of a terminal window that shows how to use the Set-AdfsSyncProperties -Role SecondaryComputer -PrimaryComputerName {FQDN} cmdlet.](media/Upgrading-to-AD-FS-in-Windows-Server-2016/ADFS_Mixed_5.png)
 
-6. Now on the Windows Server 2016 federation server open AD FS Management. Note that now all of the admin capabilities appear because the primary role has been transferred to this server.
+6. Now on the Windows Server 2019 federation server open AD FS Management. Note that now all of the admin capabilities appear because the primary role has been transferred to this server.
 
 ![Screenshot that shows the Windows Server 2016 federation server open AD FS Management window.](media/Upgrading-to-AD-FS-in-Windows-Server-2016/ADFS_Mixed_6.png)
 
@@ -102,11 +102,11 @@ Once that completes run `adprep /domainprep`
 Test-AdfsFarmBehaviorLevelRaise
 ```
 
-9. Now on the Windows Server 2016 Server open PowerShell and run the following cmdlet:
+9. Now on the Windows Server 2019 Server open PowerShell and run the following cmdlet:
 
 
 > [!NOTE]
-> All 2012 R2 servers must be removed from the farm before running the next step.
+> All 2012 R2 (and/or 2016 if you migrate to 2019) servers must be removed from the farm before running the next step.
 
 ```PowerShell
 Invoke-AdfsFarmBehaviorLevelRaise
