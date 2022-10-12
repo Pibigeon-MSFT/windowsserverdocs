@@ -65,6 +65,23 @@ The general AD FS preauthentication flow is as follows:
 > [!NOTE]
 > This topic includes sample Windows PowerShell cmdlets that you can use to automate some of the procedures described. For more information, see [Using Cmdlets](/previous-versions//bb648607(v=vs.85)).
 
+> [!IMPORTANT]
+> If you are installing the WebApplicationProxy feature on Windows Server 2019, you must disable HTTP2 protocol support in the WinHttp component for Kerberos Constrained Delegation to properly work. This is disabled by default in earlier versions of supported operating systems. Adding the following registry key and restarting the server disables it on Windows Server 2019. Note that this is a machine-wide registry key.
+>
+> ```
+> Windows Registry Editor Version 5.00
+>
+> [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp]
+> "EnableDefaultHTTP2"=dword:00000000
+> ```
+>
+> The key can be set via PowerShell with the following command:
+>
+> ```
+> Set-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp\' -Name EnableDefaultHTTP2 -Value 0
+> ```
+
+
 ## <a name="BKMK_1.1"></a>Publish a Claims-based Application for Web Browser Clients
 To publish an application that uses claims for authentication, you must add a relying party trust for the application to the Federation Service.
 
